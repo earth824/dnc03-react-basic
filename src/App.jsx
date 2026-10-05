@@ -1,47 +1,71 @@
+import { useState } from 'react';
+
+// CONTROLLED COMPONENT VS. UNCONTROLLED COMPONENT
 export default function App() {
-  const handleClickSearch = () => {
-    console.log('Search clicked');
+  // CONTROLLED COMPONENT: input value controlled react state
+  const [email, setEmail] = useState('abcd');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  const [input, setInput] = useState({
+    email: '',
+    password: '',
+    name: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // READ FORM VALUE: STATE
   };
-  // const onClickSearchHandler = () => {}
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
   return (
-    <>
-      <button
-        className="px-3 py-1.5 bg-blue-400"
-        onClick={() => {
-          console.log('Clicked');
-        }}
-      >
-        Click
-      </button>
-      <button className="px-3 py-1.5 bg-red-400" onClick={handleClickSearch}>
-        Search
-      </button>
-      <br />
+    <form action="" className="grid gap-2 max-w-2xl" onSubmit={handleSubmit}>
+      <input
+        name="email"
+        type="email"
+        className="border"
+        onChange={handleChange}
+        value={input.email}
+      />
+      <input
+        name="password"
+        type="password"
+        className="border"
+        onChange={handleChange}
+        value={input.password}
+      />
+      <input
+        name="name"
+        type="text"
+        className="border"
+        onChange={handleChange}
+        value={input.name}
+      />
+
+      {/* <input
+        type="email"
+        className="border"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+      <input
+        type="password"
+        className="border"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
       <input
         type="text"
-        className="px-3 py-1.5 border rounded-lg"
-        onChange={(event) => {
-          console.log(event.target.value);
-        }}
-      />
-      <br />
-      <form
-        action=""
-        onSubmit={(event) => {
-          event.preventDefault();
-          // fetch,axios
-          console.log('Form submitted');
-        }}
-      >
-        <input type="text" className="px-3 py-1.5 border rounded-lg" />
-        <button type="submit" className="px-3 py-1.5 bg-green-400">
-          Submit Form
-        </button>
-      </form>
-    </>
+        className="border"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+      /> */}
+
+      <button>Submit</button>
+    </form>
   );
 }
-
-// const btn = document.querySelector('button')
-// btn.addEventListener('click', function() {})
